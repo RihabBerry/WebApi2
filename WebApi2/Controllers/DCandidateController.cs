@@ -19,9 +19,9 @@ namespace WebApi2
         }
 
         // GET: DCandidate
-        public async Task<IActionResult> Index()
+        public async Task<ActionResult<IEnumerable<DCandidate>>> Index()
         {
-            return View(await _context.DCandidates.ToListAsync());
+            return await _context.DCandidates.ToListAsync();
         }
 
         // GET: DCandidate/Details/5
@@ -84,7 +84,7 @@ namespace WebApi2
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("id,fullName,moblie,email,age,bloodGroup,address")] DCandidate dCandidate)
         {
             if (id != dCandidate.id)

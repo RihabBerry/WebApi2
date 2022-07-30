@@ -12,7 +12,6 @@ namespace WebApi2.Models
        
          [Key] 
         public int id { get; set; }
-
         [Column(TypeName = "nvarchar(100)")]
         public string fullName { get; set; }
 
