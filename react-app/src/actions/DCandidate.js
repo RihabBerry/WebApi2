@@ -1,4 +1,5 @@
 /*----DEFINE ACTIONS-----*/
+import DCandidates from "../components/DCandidates";
 import dcandiates from "./api";
 
 export const ACTION_TYPES = {
@@ -10,7 +11,6 @@ export const ACTION_TYPES = {
 
 /*---DEFINE ACTIONS CREATORS ----*/
 export const fetchAll = () => (dispatch) => {
-  console.log(dcandiates.fetchAll());
   dcandiates
     .fetchAll()
     .then((response) => {
@@ -22,4 +22,14 @@ export const fetchAll = () => (dispatch) => {
     })
 
     .catch((error) => console.log("error with fetching the data"));
+};
+export const Create = (newobject) => (dispatch) => {
+  dcandiates.create(newobject).then((response) => {
+    dispatch({
+      type: ACTION_TYPES.CREATE,
+      payload: response.data,
+    });
+    console.log("this si the send data", newobject);
+    console.log("this fetch created data", response.data);
+  });
 };

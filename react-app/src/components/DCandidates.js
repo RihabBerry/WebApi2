@@ -8,15 +8,14 @@ const DCandidates = (props) => {
   useEffect(() => {
     dispatch(actions.fetchAll());
     console.log("you came to use effect");
-    console.log("voila the data ", { userList });
-  }, [dispatch, userList]);
+  }, [dispatch]);
 
   return (
     <Fragment>
       <div style={{ height: 350, width: "100%" }}>
         <DataGrid
           columns={[
-            { field: "fullName" },
+            { field: "fullName", editable: true },
             { field: "age" },
             { field: "moblie" },
           ]}

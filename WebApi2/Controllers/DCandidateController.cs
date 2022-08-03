@@ -53,15 +53,14 @@ namespace WebApi2
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
        // [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,fullName,moblie,email,age,bloodGroup,address")] DCandidate dCandidate)
+        public async Task<ActionResult<DCandidate>> Create( DCandidate dCandidate)
         {
-            if (ModelState.IsValid)
-            {
+            //it will handle the id creation 
                 _context.Add(dCandidate);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(dCandidate);
+                return dCandidate;
+            
+            
         }
 
         // GET: DCandidate/Edit/5
