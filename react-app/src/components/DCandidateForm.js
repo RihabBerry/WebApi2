@@ -5,14 +5,16 @@ import * as actions from "../actions/DCandidate";
 const DCandidateForm = (props) => {
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
+  const currentId = useSelector((state) => state.currentId);
+
   const [inputs, setInputs] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (props.currentId == 0) {
+    if (currentId == 0) {
       dispatch(actions.Create(inputs));
     } else {
-      dispatch(actions.Update(props.currentId, inputs));
+      dispatch(actions.Update(currentId, inputs));
     }
     //qu'est ce que vous allez faire avec votre data
   };
@@ -22,13 +24,13 @@ const DCandidateForm = (props) => {
     setInputs((values) => ({ ...values, [name]: value }));
   };
   useEffect(() => {
-    console.log("the id ", props.currentId);
+    console.log("the id ", currentId);
 
-    if (props.currentId !== 0) {
-      setInputs(userList.find((x) => x.id === props.currentId));
+    if (currentId !== 0) {
+      setInputs(userList.find((x) => x.id === currentId));
       console.log("this is slected", inputs);
     }
-  }, [props.currentId]);
+  }, [currentId]);
 
   return (
     <form onSubmit={handleSubmit}>

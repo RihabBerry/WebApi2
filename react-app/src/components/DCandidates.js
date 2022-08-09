@@ -4,21 +4,20 @@ import { DataGrid } from "@mui/x-data-grid";
 import * as actions from "../actions/DCandidate";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { ACTION_TYPES } from "../actions/DCandidate";
 
 import { FormControlLabel, IconButton } from "@material-ui/core";
 import { blue, red } from "@material-ui/core/colors";
-import DCandidateForm from "./DCandidateForm";
 
 const DCandidates = (props) => {
   const dispatch = useDispatch();
 
-  const [currentId, setCurrentId] = useState(0);
+  // const [currentId, setCurrentId] = useState(0);
+  const currentId = useSelector((state) => state.currentId);
   const MatEdit = ({ index }) => {
     const handleEditClick = () => {
       console.log("current id ", currentId);
-
-      setCurrentId(index);
-      console.log("current", currentId);
+      dispatch({ type: ACTION_TYPES.UPDATE_CURRENT_ID, payload: index });
     };
     const handleDeleteClick = () => {
       console.log("delete");
@@ -84,7 +83,6 @@ const DCandidates = (props) => {
           ]}
           rows={userList}
         />
-        <DCandidateForm currentId={currentId} />
       </div>
     </>
   );
