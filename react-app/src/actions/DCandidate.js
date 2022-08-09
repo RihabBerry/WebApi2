@@ -23,13 +23,31 @@ export const fetchAll = () => (dispatch) => {
 
     .catch((error) => console.log("error with fetching the data"));
 };
+
 export const Create = (newobject) => (dispatch) => {
   dcandiates.create(newobject).then((response) => {
     dispatch({
       type: ACTION_TYPES.CREATE,
       payload: response.data,
     });
-    console.log("this si the send data", newobject);
     console.log("this fetch created data", response.data);
+  });
+};
+
+export const Update = (id, newObject) => (dispatch) => {
+  dcandiates.update(id, newObject).then((response) => {
+    dispatch({
+      type: ACTION_TYPES.UPDATE,
+      payload: { id, ...newObject },
+    });
+  });
+};
+
+export const Delete = (id) => (dispatch) => {
+  dcandiates.Delete(id).then((response) => {
+    dispatch({
+      type: ACTION_TYPES.DELETE,
+      payload: id,
+    });
   });
 };

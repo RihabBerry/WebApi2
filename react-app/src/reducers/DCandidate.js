@@ -16,10 +16,20 @@ const DCandidateReducer = (state = initialState, action) => {
         ...state,
         userList: [...state.userList, action.payload],
       };
-    case "Papayas":
-      console.log("Mangoes and papayas are $2.79 a pound.");
-      // expected output: "Mangoes and papayas are $2.79 a pound."
-      break;
+    case ACTION_TYPES.UPDATE:
+      return {
+        ...state,
+        userList: state.userList.map((x) =>
+          x.id === action.payload.id ? action.payload : x
+        ),
+      };
+
+    case ACTION_TYPES.DELETE:
+      console.log("you come to reducer of delete ");
+      return {
+        ...state,
+        userList: state.userList.filter((x) => x.id !== action.payload),
+      };
     default:
       return state;
   }

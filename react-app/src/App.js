@@ -2,13 +2,14 @@ import "./App.css";
 import { store } from "./actions/store";
 import { Provider } from "react-redux";
 import DCandidates from "./components/DCandidates";
-import DCandidateForm from "./components/DCandidateForm";
+import { useState } from "react";
 
 function App() {
+  const data = useState();
+
   return (
     <Provider store={store}>
       <DCandidates />
-      <DCandidateForm />
     </Provider>
   );
 }

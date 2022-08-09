@@ -10,7 +10,6 @@ const create = (newobject) => {
   Object.entries(newobject).forEach(([key, value]) => {
     formData.append(key, value);
   });
-  console.log("new object to verify", formData);
   return axios({
     method: "post",
     url: baseUrl + "/Create",
@@ -21,11 +20,21 @@ const create = (newobject) => {
 const fetchById = (id) => {
   return axios.get(baseUrl + id);
 };
-const update = (updateRecord, id) => {
-  return axios.put(baseUrl + id, updateRecord);
+const update = (id, updateRecord) => {
+  var formData = new FormData();
+  Object.entries(updateRecord).forEach(([key, value]) => {
+    formData.append(key, value);
+  });
+  return axios({
+    method: "put",
+    url: baseUrl + "/Edit/" + id,
+    data: formData,
+    headers: { "content-Type": "multipart/form-data" },
+  });
 };
 const Delete = (id) => {
-  return axios.delete(baseUrl + id);
+  console.log("you come to delete url ");
+  return axios.delete(baseUrl + "/Delete/" + id);
 };
 const dcandiates = {
   fetchAll,
